@@ -1,0 +1,4 @@
+name: @pom.artifactId@
+main: @pom.groupId@.@pom.artifactId@.Main
+version: @pom.version@
+api: [1.0.9]

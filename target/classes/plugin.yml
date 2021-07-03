@@ -1,0 +1,4 @@
+name: ModelManagerRe
+main: xyz.lightsky.ModelManagerRe.Main
+version: 1.0-SNAPSHOT
+api: [1.0.9]
