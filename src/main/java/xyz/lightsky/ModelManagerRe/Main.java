@@ -3,11 +3,13 @@ package xyz.lightsky.ModelManagerRe;
 import cn.nukkit.entity.data.Skin;
 import cn.nukkit.plugin.PluginBase;
 import com.google.gson.Gson;
-import xyz.lightsky.ModelManagerRe.Beans.Manager;
+import xyz.lightsky.ModelManagerRe.NewBeans.NewManager;
+import xyz.lightsky.ModelManagerRe.OldBeans.OldManager;
 
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.LinkedHashMap;
@@ -19,7 +21,7 @@ public class Main extends PluginBase {
 
     @Override
     public void onEnable() {
-        if(getDataFolder().mkdirs() && new File(getDataFolder(), "/Models/").mkdirs()) {
+        if(getDataFolder().mkdirs()) {
             getLogger().info("首次加载中");
         }
         getLogger().info("正在载入模型...");
@@ -36,18 +38,29 @@ public class Main extends PluginBase {
         super.onDisable();
     }
 
+    /**
+     *
+     * @return Models list
+     */
     public static LinkedHashMap<String, Skin> getModels() {
         return models;
     }
 
+    /**
+     *
+     * @param name index
+     * @return Model
+     */
     public static Skin getModel(String name) {
         return models.get(name);
     }
 
     private void loadModels() throws IOException, SkinConfigException {
-        File dir = new File(getDataFolder(), "/Models/");
+        double start = System.currentTimeMillis();
+        File dir = getDataFolder();
         if (dir.listFiles() == null) return;
         for(String modelName : Objects.requireNonNull(dir.list())){
+            double startOne = System.currentTimeMillis();
             File modelDir = null;
             if(!((modelDir = (new File(dir, modelName))).isDirectory())) continue;
             if(Objects.requireNonNull(modelDir.list()).length != 2) continue;
@@ -57,7 +70,7 @@ public class Main extends PluginBase {
                 if(data.getName().endsWith(".json")){
                     String json = new String(Files.readAllBytes(data.toPath()), StandardCharsets.UTF_8);
                     skin.setGeometryData(json);
-                    skin.setGeometryName(Objects.requireNonNull(getModelManager(data.toString())).getModelLabel());
+                    skin.setGeometryName(Objects.requireNonNull(getModelManager(data.toString())).getMainIdentifier());
                 }else if(data.getName().endsWith(".png")){
                     skin.setSkinData(ImageIO.read(data));
                 }else{
@@ -65,29 +78,59 @@ public class Main extends PluginBase {
                 }
             }
             models.putIfAbsent(modelName, skin);
-            getLogger().info("成功构建 "+modelName);
+            double endOne = System.currentTimeMillis();
+            getLogger().info("成功构建 " + modelName + " 用时: " + (endOne - startOne) + "ms");
         }
+        double end = System.currentTimeMillis();
+        getLogger().info("构建完毕 总用时: " + (end - start) + "ms");
     }
 
-    private static Manager getModelManager(String jsonPath) throws IOException {
+    /**
+     *
+     * @param jsonPath provide a path
+     * @return NewManager or OldManager
+     * @throws IOException
+     */
+    public static Manager getModelManager(String jsonPath) throws IOException {
         File json = new File(jsonPath);
         if(!json.exists()) return null;
         String data = new String(Files.readAllBytes(json.toPath()));
+        if(data.contains("1.12.0")){
+            return (new Gson()).fromJson(data, (Type) NewManager.class);
+        }
         data = "{\"modelsMap\": " + data + "}";
-        return (new Gson()).fromJson(data, Manager.class);
+        return (new Gson()).fromJson(data, OldManager.class);
     }
 
-    private static Manager getFromJsonString(String json) {
+
+    /**
+     *
+     * @param json json data
+     * @return NewManager or OldManager
+     */
+    public static Manager getFromJsonString(String json) {
+        if(json.contains("1.12.0")){
+            return (new Gson()).fromJson(json, (Type) NewManager.class);
+        }
         json = "{\"modelsMap\": " + json + "}";
-        return (new Gson()).fromJson(json, Manager.class);
+        return (new Gson()).fromJson(json, OldManager.class);
     }
 
+
+    /**
+     *
+     * @param manager NewManager or OldManager
+     * @return json data
+     */
     public static String getJsonString(Manager manager) {
         String json = (new Gson()).toJson(manager);
+        if(json.contains("1.12.0")) return json;
         json = json.substring(13);
         json = json.substring(0, json.length()-1);
         return json;
     }
+
+
 
 
 }
