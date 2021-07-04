@@ -105,7 +105,7 @@
 
    ```java
    	// 获取到某个bone的cube后，即可以对下面的属性进行更改，最后使用Main.getJsonString()即可
-   	public void setMirror(boolean mirror) {
+   public void setMirror(boolean mirror) {
            this.mirror = mirror;
        }
    
