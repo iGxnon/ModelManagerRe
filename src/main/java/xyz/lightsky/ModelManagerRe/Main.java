@@ -51,7 +51,8 @@ public class Main extends PluginBase {
      * @param name index
      * @return Model
      */
-    public static Skin getModel(String name) {
+    public static Skin getModel(String name) throws SkinNotFoundException {
+        if(models.get(name) == null) throw new SkinNotFoundException();
         return models.get(name);
     }
 

@@ -1,4 +1,4 @@
 name: ModelManagerRe
 main: xyz.lightsky.ModelManagerRe.Main
-version: 2.1-RELEASE
+version: 2.2-RELEASE
 api: [1.0.9]

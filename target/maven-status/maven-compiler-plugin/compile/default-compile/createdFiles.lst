@@ -6,6 +6,7 @@ xyz\lightsky\ModelManagerRe\NewBeans\Model.class
 xyz\lightsky\ModelManagerRe\OldBeans\Bone.class
 xyz\lightsky\ModelManagerRe\Main.class
 xyz\lightsky\ModelManagerRe\OldBeans\OldManager.class
+xyz\lightsky\ModelManagerRe\SkinNotFoundException.class
 xyz\lightsky\ModelManagerRe\NewBeans\NewManager.class
 xyz\lightsky\ModelManagerRe\OldBeans\Cube.class
 xyz\lightsky\ModelManagerRe\OldBeans\Model.class
