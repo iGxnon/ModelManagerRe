@@ -2,7 +2,7 @@
 
 ### 安装
 
-> [Download JAR](https://github.com/iGxnon/ModelManagerRe/releases)
+> [Download JAR](https://github.com/iGxnon/ModelManagerRe/tree/main/target)
 
 ### 这是什么
 
