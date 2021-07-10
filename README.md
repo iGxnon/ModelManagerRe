@@ -2,7 +2,10 @@
 
 ### 安装
 
-> [Download JAR](https://github.com/iGxnon/ModelManagerRe/releases)
+<a href="https://github.com/iGxnon/ModelManagerRe/releases/latest" alt="Latest release">
+    <img src="https://img.shields.io/github/v/release/iGxnon/ModelManagerRe" alt="Latest release">
+</a>
+<br>
 
 ### 这是什么
 
