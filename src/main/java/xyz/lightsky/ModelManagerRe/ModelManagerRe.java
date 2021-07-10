@@ -51,8 +51,7 @@ public class ModelManagerRe extends PluginBase {
      * @param name index
      * @return Model
      */
-    public static Skin getModel(String name) throws SkinNotFoundException {
-        if(models.get(name) == null) throw new SkinNotFoundException();
+    public static Skin getModel(String name) {
         return models.get(name);
     }
 

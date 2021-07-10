@@ -1,6 +1,6 @@
 name: ModelManagerRe
 main: xyz.lightsky.ModelManagerRe.ModelManagerRe
-version: 2.3-RELEASE
+version: 2.4-RELEASE
 api: [1.0.9]
 author: iGxnon
 load: STARTUP
