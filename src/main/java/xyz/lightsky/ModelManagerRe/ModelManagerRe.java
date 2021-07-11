@@ -19,18 +19,30 @@ public class ModelManagerRe extends PluginBase {
 
     private static LinkedHashMap<String, Skin> models = new LinkedHashMap<String, Skin>();
 
+    private static ModelManagerRe instance;
+
+    public static ModelManagerRe getInstance() {
+        return instance;
+    }
+
+    @Override
+    public void onLoad() {
+        instance = this;
+    }
+
     @Override
     public void onEnable() {
+        Language.init();
         if(getDataFolder().mkdirs()) {
-            getLogger().info("首次加载中");
+            getLogger().info(Language.get("first_load"));
         }
-        getLogger().info("正在载入模型...");
+        getLogger().info(Language.get("load_model"));
         try {
             loadModels();
         } catch (IOException | SkinConfigException e) {
             e.printStackTrace();
         }
-        getLogger().info("模型载入完毕...");
+        getLogger().info(Language.get("load_end"));
     }
 
     @Override
@@ -79,10 +91,10 @@ public class ModelManagerRe extends PluginBase {
             }
             models.putIfAbsent(modelName, skin);
             double endOne = System.currentTimeMillis();
-            getLogger().info("成功构建 " + modelName + " 用时: " + (endOne - startOne) + "ms");
+            getLogger().info(Language.get("load_success") + modelName + Language.get("time_cost") + (endOne - startOne) + "ms");
         }
         double end = System.currentTimeMillis();
-        getLogger().info("构建完毕 总用时: " + (end - start) + "ms");
+        getLogger().info(Language.get("load_success&time_cost") + (end - start) + "ms");
     }
 
     /**

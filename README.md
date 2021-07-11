@@ -1,11 +1,15 @@
 # ModelManagerRe
 
+<a href="https://github.com/iGxnon/ModelManagerRe/README_EN.md" alt="Latest release">
+    <img src="https://img.shields.io/badge/README-English-green">
+</a>
+
 ### 安装
 
 <a href="https://github.com/iGxnon/ModelManagerRe/releases/latest" alt="Latest release">
     <img src="https://img.shields.io/github/v/release/iGxnon/ModelManagerRe" alt="Latest release">
 </a>
-<br>
+
 
 ### 这是什么
 
@@ -21,16 +25,16 @@
 
 ### 应用场景
 
-> 1. 解析Minecraft方块建筑，构建json模型字符串
->
-> 2. 快捷实现实体模型的变化，如rotation的改变
+> 1. 解析Minecraft方块建筑，快速构建json模型字符串 (尚未加入,请别的开发者加入或者本人以后更新)
+>2. 快捷实现实体模型的变化，如rotation的改变
 > 3. 管理服务器模型，即拿即用
+> 4. 如果其他插件使用本插件加载模型,可能会节省一点性能?
 
 ### 如何使用
 
 > 1. 对于服务器运营者:
 >
->    将jar文件放置于plugins下，此插件将作为众多插件的前置使用，可方便服主管理模型，提高服务器运行效率
+>    将jar文件放置于plugins下，在生成的文件夹里面放入模型文件夹（包含一个png文件(分辨率不能超过128*128)和一个json文件），重启服务器即可，此插件将作为众多插件的前置使用，可方便服主管理模型，提高服务器运行效率
 >
 > 2. 对于开发者:
 >
@@ -38,7 +42,7 @@
 
 ### 开发者文档
 
-1. Main类的静态方法
+1. ModelManagerRe类的静态方法
 
    ```java
    /**
@@ -107,7 +111,7 @@
 4. Cube
 
    ```java
-   	// 获取到某个bone的cube后，即可以对下面的属性进行更改，最后使用Main.getJsonString()即可
+   	// 获取到某个bone的cube后，即可以对下面的属性进行更改，最后使用ModelMangerRe.getJsonString()即可
        public void setMirror(boolean mirror) {
            this.mirror = mirror;
        }
