@@ -1,6 +1,0 @@
-name: ModelManagerRe
-main: xyz.lightsky.ModelManagerRe.ModelManagerRe
-version: 2.6-RELEASE
-api: [1.0.9]
-author: iGxnon
-load: STARTUP
