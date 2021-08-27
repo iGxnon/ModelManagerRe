@@ -1,3 +1,15 @@
+# Closed 已关闭
+
+截止于 `2.6-Release`, 已经不再更新
+
+As of `2.6-Release`, no longer updated 
+
+后续更新见 [feat: ModelManager added · MemoriesOfTime/MemoriesOfTime-GameCore@5c98a5e (github.com)](https://github.com/MemoriesOfTime/MemoriesOfTime-GameCore/commit/5c98a5e5a46cfcaceedaf11f8662dacf03c7df8c)
+
+See [feat: ModelManager added · MemoriesOfTime/MemoriesOfTime-GameCore@5c98a5e (github.com)](https://github.com/MemoriesOfTime/MemoriesOfTime-GameCore/commit/5c98a5e5a46cfcaceedaf11f8662dacf03c7df8c) for follow-up updates
+
+---
+
 # ModelManagerRe
 
 <a href="https://github.com/iGxnon/ModelManagerRe/README_EN.md" alt="Latest release">
